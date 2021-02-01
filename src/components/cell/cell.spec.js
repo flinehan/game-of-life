@@ -8,8 +8,11 @@ beforeAll(() => {
 
 describe('cell', () => {
   it('has a location', () => {
-    const test = new Cell({x:1, y:1})
-    expect(test.x).toEqual(1);
-    expect(test.y).toEqual(1);
+    expect(testCell.x).toEqual(0);
+    expect(testCell.y).toEqual(0);
+  });
+
+  it('it is alive', () => {
+    expect(testCell.alive).toEqual(true);
   });
 });
