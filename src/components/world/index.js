@@ -9,7 +9,8 @@ export default class World {
 
   constructor({ rows, cols } = { rows: 10, cols: 10 }) {
     this.rows = rows;
-    this.cols = cols
+    this.cols = cols;
+    this.running = false;
     this.matrix = this.setupMatrix({ rows, cols })
   }
 
@@ -17,6 +18,22 @@ export default class World {
     return Array(cols).fill(false).map((col) => {
       return Array(rows).fill(false)
     })
+  }
+
+  clear = () =>{
+    this.matrix = this.setupMatrix(this)
+  }
+
+  random = () => {
+    this.matrix = Array(this.cols)
+      .fill(false)
+      .map((col, colIndex) => {
+        return Array(this.rows).fill(false).map((item, rowIndex)=>{
+          if(Math.random() > .8){
+            return new Cell({y: colIndex,x:rowIndex})
+          }
+        })
+      });
   }
 
   addCell(cell) {
@@ -50,7 +67,7 @@ export default class World {
     return count;
   }
 
-  applyRules() {
+  applyRules = () => {
     const buffer = this.setupMatrix(this)
     for (let y = 0; y < this.matrix.length; y++) {
       for (let x = 0; x < this.matrix[y].length; x++) {
@@ -65,7 +82,5 @@ export default class World {
     }
 
     this.matrix = buffer;
-
-    console.log(this.matrix)
   }
 }

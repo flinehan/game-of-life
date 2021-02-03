@@ -12,14 +12,13 @@ var defaults = {
 
 const Canvas = props => {
   
-  const { draw, ...rest } = props
+  const { draw, rows, cols, ...rest } = props
   const canvasRef = useRef(null)
   
   useEffect(() => {
-    
     const canvas = canvasRef.current
-    canvas.width  = rest.rows || 10 * defaults.cellSize;
-		canvas.height = rest.cols || 10 * defaults.cellSize;
+    canvas.width  = rows * defaults.cellSize || 10 * defaults.cellSize;
+		canvas.height = cols * defaults.cellSize || 10 * defaults.cellSize;
     const context = canvas.getContext('2d')
     let frameCount = 0
     let animationFrameId
